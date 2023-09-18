@@ -32,6 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
     int screenHeight2 = screenHeight;
     BufferedImage tempScreen;
     Graphics2D g2;
+    public boolean fullScreenOn = false;
 
 
     int FPS = 60;
@@ -40,8 +41,8 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
 
-    Sound music = new Sound();
-    Sound se = new Sound();
+    public Sound music = new Sound();
+    public Sound se = new Sound();
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
@@ -68,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int dialogueState = 3;
 
     public final int characterState = 4;
+    public final int optionState = 5;
 
 
 
