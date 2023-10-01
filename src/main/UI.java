@@ -27,6 +27,7 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     public int subState = 0;
+    int counter = 0;
 
 
     public UI(GamePanel gp){
@@ -108,9 +109,16 @@ public class UI {
             drawOptionScreen();
         }
 
+        // GAME OVER
         if(gp.gameState == gp.gameOverState){
             drawGameOverScreen();
         }
+
+        // TRANSITION
+        if(gp.gameState == gp.transitionState){
+            drawTransition();
+        }
+
 
     }
 
@@ -560,6 +568,22 @@ public class UI {
         }
 
 
+    }
+
+    public void drawTransition(){
+        counter++;
+
+        g2.setColor(new Color(0, 0, 0, counter * 5));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        if(counter == 50){
+            counter = 0;
+            gp.gameState = gp.playState;
+            gp.currentMap = gp.eHander.tempMap;
+            gp.player.worldX = gp.tileSize * gp.eHander.tempCol;
+            gp.player.worldY = gp.tileSize * gp.eHander.tempRow;
+            gp.eHander.previousEventX = gp.player.worldX;
+            gp.eHander.previousEventY = gp.player.worldY;
+        }
     }
 
     public void options_top(int frameX, int frameY){
