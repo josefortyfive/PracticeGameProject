@@ -1,5 +1,7 @@
 package main;
 
+import entity.Entity;
+
 public class EventHandler extends  EventRect{
 
     GamePanel gp;
@@ -71,6 +73,7 @@ public class EventHandler extends  EventRect{
             else if(hit(1, 12, 13, "any" )== true){
                 teleport(0, 10, 39);
             }
+            else if(hit(1, 12, 9, "up") == true) {speak(gp.npc[1][0]);}
         }
 
     }
@@ -135,5 +138,14 @@ public class EventHandler extends  EventRect{
 
         canTouchEvent = false;
         gp.playSE(13);
+    }
+
+    public void speak(Entity entity){
+
+        if(gp.keyH.enterPressed == true){
+            gp.gameState = gp.dialogueState;
+            gp.player.attackCancel = true;
+            entity.speak();
+        }
     }
 }

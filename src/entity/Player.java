@@ -6,6 +6,7 @@ import object.OBJ_Fireball;
 import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
+import object.OBJ_Axe;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -49,9 +50,11 @@ public class Player extends Entity{
 
     public void setDefaultValues(){
 
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+       // worldX = gp.tileSize * 23;
+       // worldY = gp.tileSize * 21;
 
+        worldX = gp.tileSize * 10;
+        worldY = gp.tileSize * 39;
         //worldX = gp.tileSize * 12;
         //worldY = gp.tileSize * 13;
         speed = 4;
@@ -69,7 +72,7 @@ public class Player extends Entity{
         dexterity = 1; // more dex, more defense
         exp = 0;
         nextLevelExp = 5;
-        coin = 0;
+        coin = 500;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         projectile = new OBJ_Fireball(gp);
@@ -96,6 +99,7 @@ public class Player extends Entity{
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Axe(gp));
     }
     public int getAttack(){
 
@@ -455,7 +459,7 @@ public class Player extends Entity{
     }
 
     public void selectItem(){
-        int itemIndex = gp.ui.getItemIndexOnSlot();
+        int itemIndex = gp.ui.getItemIndexOnSlot(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
 
         if(itemIndex < inventory.size()){
             Entity selectedItem = inventory.get(itemIndex);
